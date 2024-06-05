@@ -13,14 +13,14 @@ import data from "./data.json";
 test("Todos los elementos están instanciados", () => {
   // Arrange
   render(<MultipleChoiceExample />);
-  const stimulus = screen.getByText("¿Cuál es la capital de Francia?");
+  const stimulus = screen.getByText(data.stimulus);
   const options = screen.getAllByTestId("option");
   const checkButton = screen.getByText("Comprobar");
   const resetButton = screen.getByText("Reiniciar");
   // Act ...
   // Assert
   expect(stimulus).toBeInTheDocument();
-  expect(options).toHaveLength(4);
+  expect(options).toHaveLength(data.options.length);
   expect(checkButton).toBeInTheDocument();
   expect(resetButton).toBeInTheDocument();
 });
