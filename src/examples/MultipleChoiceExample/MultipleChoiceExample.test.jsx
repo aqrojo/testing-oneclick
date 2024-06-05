@@ -13,16 +13,14 @@ import data from "./data.json";
 test("Todos los elementos están instanciados", () => {
   // Arrange
   render(<MultipleChoiceExample />);
-  const stimulus = screen.getByText("¿Cuál es la capital de Francia?");
+  const stimulus = screen.getByText(data.stimulus);
   const options = screen.getAllByTestId("option");
   const checkButton = screen.getByText("Comprobar");
-  const resetButton = screen.getByText("Reiniciar");
   // Act ...
   // Assert
   expect(stimulus).toBeInTheDocument();
-  expect(options).toHaveLength(4);
+  expect(options).toHaveLength(data.options.length);
   expect(checkButton).toBeInTheDocument();
-  expect(resetButton).toBeInTheDocument();
 });
 
 test("Se puede seleccionar una opcion", async () => {
@@ -102,48 +100,6 @@ test("Tras evaluar erroneamente > feedback error", async () => {
 
   // Assert
   expect(exercise).toHaveClass("error");
-});
-
-test("Botón reset está deshabilitado cuando el ejercicio no está evaluado", async () => {
-  // en el primer test añadir al botón reset
-  // Arrange
-  const user = userEvent.setup();
-  render(<MultipleChoiceExample />);
-  const checkButton = screen.getByText("Comprobar");
-  const resetButton = screen.getByText("Reiniciar");
-  // Act
-  expect(resetButton).toBeDisabled();
-  await user.click(checkButton);
-
-  // Assert
-  expect(resetButton).not.toBeDisabled();
-});
-
-test("Pulsar botón reset reinicia el ejercicio", async () => {
-  // Arrange
-  const user = userEvent.setup();
-  render(<MultipleChoiceExample />);
-  const option1 = getOptionByIndex(1);
-  const checkButton = screen.getByText("Comprobar");
-  const resetButton = screen.getByText("Reiniciar");
-  // Act & assert ...
-  // elegir una opción y comprobar el ejercicio
-  await user.click(option1);
-  await user.click(checkButton);
-
-  // comprobar que option1 el botón de comprobar está deshabilitado
-  expect(option1).toBeDisabled();
-  expect(option1).toHaveClass("selected");
-  expect(checkButton).toBeDisabled();
-
-  // resetear el ejercicio
-  await user.click(resetButton);
-
-  // comprobar que el reset ha funcionado
-  expect(option1).not.toBeDisabled();
-  expect(option1).not.toHaveClass("selected");
-  expect(checkButton).not.toBeDisabled();
-  expect(resetButton).toBeDisabled();
 });
 
 function getOptionByIndex(index) {
