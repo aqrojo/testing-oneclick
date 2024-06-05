@@ -21,11 +21,6 @@ function MultipleChoice({ data }) {
     setCompleted(true);
   }
 
-  function reset() {
-    setUserResponse(undefined);
-    setCompleted(false);
-  }
-
   return (
     <div data-testid="exercise" className={"multiple-choice " + feedback}>
       <Title>{data.stimulus}</Title>
@@ -39,7 +34,7 @@ function MultipleChoice({ data }) {
           />
         ))}
       </div>
-      <Controls checkAnswer={checkAnswer} reset={reset} completed={completed} />
+      <Controls checkAnswer={checkAnswer} completed={completed} />
     </div>
   );
 }
@@ -66,9 +61,6 @@ function Controls({ checkAnswer, reset, completed }) {
     <div className="controls">
       <button onClick={checkAnswer} disabled={completed}>
         Comprobar
-      </button>
-      <button onClick={reset} disabled={!completed}>
-        Reiniciar
       </button>
     </div>
   );
