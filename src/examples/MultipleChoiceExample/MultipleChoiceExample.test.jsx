@@ -50,7 +50,21 @@ test("Se puede cambiar la selección", async () => {
   expect(option2).toHaveClass("selected");
 });
 
-test("Tras evaluar las opciones y botón de comprobar quedan bloqueados", () => {});
+test("Tras evaluar las opciones y botón de comprobar quedan bloqueados", async () => {
+  // Arrange
+  const user = userEvent.setup();
+  render(<MultipleChoiceExample />);
+  const options = screen.getAllByTestId("option");
+  const checkButton = screen.getByText("Comprobar");
+  // Act
+  await user.click(checkButton);
+
+  // Assert
+  expect(checkButton).toBeDisabled();
+  options.forEach((option) => {
+    expect(option).toBeDisabled();
+  });
+});
 
 test("Tras evaluar correctamente > feedback success", () => {});
 

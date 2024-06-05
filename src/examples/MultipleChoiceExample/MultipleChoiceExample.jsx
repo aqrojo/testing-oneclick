@@ -35,7 +35,6 @@ function MultipleChoice({ data }) {
             key={option}
             option={option}
             isSelected={userResponse === option}
-            disabled={completed}
             onClick={selectOption}
           />
         ))}
@@ -49,13 +48,12 @@ function Title({ children }) {
   return <h2 className="stimulus">{children}</h2>;
 }
 
-function Option({ option, isSelected, onClick, disabled }) {
+function Option({ option, isSelected, onClick }) {
   const className = isSelected ? "option selected" : "option";
   return (
     <button
       className={className}
       data-testid="option"
-      disabled={disabled}
       onClick={() => onClick(option)}
     >
       {option}
