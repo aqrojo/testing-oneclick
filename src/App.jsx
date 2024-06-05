@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <ul className="menu">
         <li>
-          <Link href="/suma">Suma</Link>
+          <Link href="/">Suma</Link>
         </li>
         <li>
           <Link href="/multiple-choice">Multiple choice</Link>
@@ -16,7 +16,7 @@ function App() {
       </ul>
 
       <Switch>
-        <Route path="/suma" component={SumExample} />
+        <Route path="/" component={SumExample} />
         <Route path="/multiple-choice" component={MultipleChoiceExample} />
       </Switch>
     </div>
