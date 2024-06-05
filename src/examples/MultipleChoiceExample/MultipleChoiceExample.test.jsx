@@ -34,7 +34,21 @@ test("Se puede seleccionar una opcion", async () => {
   expect(option1).toHaveClass("selected");
 });
 
-test("Se puede cambiar la selección", () => {});
+test("Se puede cambiar la selección", async () => {
+  // Arrange
+  const user = userEvent.setup();
+  render(<MultipleChoiceExample />);
+  const option1 = getOptionByIndex(1);
+  const option2 = getOptionByIndex(2);
+  // Act & Assert ...
+  await user.click(option1);
+  expect(option1).toHaveClass("selected");
+  expect(option2).not.toHaveClass("selected");
+
+  await user.click(option2);
+  expect(option1).not.toHaveClass("selected");
+  expect(option2).toHaveClass("selected");
+});
 
 test("Tras evaluar las opciones y botón de comprobar quedan bloqueados", () => {});
 
