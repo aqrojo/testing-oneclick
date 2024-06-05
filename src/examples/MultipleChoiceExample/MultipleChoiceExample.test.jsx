@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import MultipleChoiceExample from "./MultipleChoiceExample";
 import data from "./data.json";
@@ -23,7 +23,16 @@ test("Todos los elementos están instanciados", () => {
   expect(checkButton).toBeInTheDocument();
 });
 
-test("Se puede seleccionar una opcion", () => {});
+test("Se puede seleccionar una opcion", async () => {
+  // Arrange
+  const user = userEvent.setup();
+  render(<MultipleChoiceExample />);
+  const option1 = getOptionByIndex(1);
+  // Act ...
+  await user.click(option1);
+  // Assert
+  expect(option1).toHaveClass("selected");
+});
 
 test("Se puede cambiar la selección", () => {});
 
