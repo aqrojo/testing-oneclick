@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import MultipleChoiceExample from "./MultipleChoiceExample";
 import data from "./data.json";
@@ -41,3 +41,12 @@ test("Tras evaluar las opciones y botón de comprobar quedan bloqueados", () => 
 test("Tras evaluar correctamente > feedback success", () => {});
 
 test("Tras evaluar erroneamente > feedback error", () => {});
+
+function getOptionByIndex(index) {
+  return screen.getAllByTestId("option")[index];
+}
+
+function getOptionByName(name) {
+  const options = screen.getByTestId("optionList");
+  return within(options).getByText(name);
+}
