@@ -1,0 +1,5 @@
+{
+  "stimulus": "¿Cuál es la capital de Francia?",
+  "options": ["Madrid", "París", "Londres", "Berlín"],
+  "correctAnswer": "París"
+}

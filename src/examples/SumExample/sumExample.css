@@ -1,0 +1,9 @@
+.sum-layout input {
+  width: 60px;
+}
+.sum-layout .operator {
+  margin: 0 0.5em;
+}
+.sum-layout button {
+  margin: 0 0.5em;
+}
